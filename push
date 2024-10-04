@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void push(char *sta[], char *a,int *len,int *top){
+
+if (*top>=(*len-1)){
+    printf("Stack overflow");
+    exit(0);
+}
+*sta[*top+1]= *a;
+*top=*top+1;
+printf("Pushed");
+}
+
+void pop(char *sta[], int *len, int *top){
+
+if (*top<=-1){
+    printf("Stack underflow");
+    exit(0);
+}
+int t=*sta[-1];
+int h;
+for(h=0; h <=(*top-1); h++){
+    *sta[h]=*sta[h+1];
+    *top=*top-1;
+    printf("Poped");
+}
+printf("Popped element=", t);
+}
+
+void display(char *sta[], int *len, int *top){
+
+if (*top<=-1){
+    printf("Stack empty");
+    exit(0);
+}
+int h;
+for(h=0; h<=*top; h++){
+    printf(*sta[h]);
+}
+}
+
+int main()
+{
+ int len,choice, i;
+ int top=-1;
+ i=1;
+
+ printf("Enter the element capacity you want");
+ scanf("%d", &len);
+ char sta[len];
+
+ while(1){
+ printf("Enter 0 for push, 1 for pop or 2 for display");
+ scanf("%d", &choice);
+ switch (choice){
+      case 0:
+          printf("Enter the element to be pushed");
+          char a;
+          scanf("%c", &a);
+          push(&sta,&a,&len,&top);
+      case 1:
+          pop(&sta, &len, &top);
+      case 2:
+          display(&sta, &len, &top);
+      default:
+           printf("Invalid choice");
+
+ }
+ printf("Enter 0 to exit or 1 to continue ");
+ scanf(&i);
+ if (i!=0){
+    exit(0);
+ }
+ }
+
+}
